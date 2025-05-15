@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <style>
+     body{
+        background-color: rgb(244, 239, 240);
+     }
+     header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+header .logo {
+    font-size: 32px;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+ header .logo span {
+    color: rgb(179, 46, 110);
+}
+
+ header ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+ header ul li {
+    padding: 5px 10px;
+}
+
+ header ul li a {
+    color: black;
+    text-decoration: none;
+}
+
+header ul li a:hover {
+    color: rgb(242, 24, 96);
+}
+
+ header p a {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 8px 20px;
+    border: 1px solid rgb(237, 144, 160);
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+header p a:hover {
+    color: white;
+    background: rgb(237, 144, 160);
+}
+
+.circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(237, 144, 160);
+    clip-path: circle(450px at left -230px);
+    z-index: -1;
+}
+
+.texts {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+ .texts h1 {
+    font-size: 5vw;
+    color: #6a6666;
+    flex: 1 1 100%;
+    margin: 15px 15px;
+}
+
+ .texts h1 span {
+    color: rgb(179, 46, 110);
+}
+
+.texts p {
+
+    flex: 1 1 100%;
+    max-width: 650px;
+    line-height: 1.6;
+    text-align: justify;
+    margin: 15px 15px;
+}
+h1{
+  text-align: center;
+  color: #9a8f8f;
+}
+     .form{
+         display: flex;
+         flex-direction: column;
+         height: 450px;
+         width: 400px;
+         border: 1px solid rgb(233, 160, 218);
+         align-items: center;
+         margin: auto;
+         margin-top: 50px ;
+         background-color: rgb(238, 100, 123);
+         box-shadow: inset;
+         border-radius: 25px;
+     }
+     .form p a{
+        color: black;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 8px 20px;
+    border: 1px solid rgb(237, 144, 160);
+    border-radius: 30px;
+    transition: 0.3s;
+     }
+     .form p a:hover{
+     color: white;
+    background: rgb(237, 144, 160);
+     }
+     h1{
+        color: white;
+        margin: 50px;
+     }
+     .box{
+        padding: 12px;
+        margin: 20px;
+        width: 60%;
+        border: none;
+        outline: none;
+        border-radius: 20px;
+        background-color: rgb(232, 225, 225);
+        color: rgb(18, 17, 17);
+        font-size: 1rem;
+     }
+     #submit{
+         padding: 10px 20px;
+         margin-top: 50px;
+         color: white;
+         background-color: rgb(237, 144, 160);
+         border: none;
+         border-radius: 20px;
+         font-size: larger;
+     }
+     
+     #submit1{
+        position: relative;
+        right: 30px;
+        padding: 10px 20px;
+         /* margin-top: 10px; */
+         color: white;
+         background-color: rgb(201, 41, 68);
+         border: none;
+         border-radius: 5px;
+         font-size: larger;
+     }
+     .btn{
+        display: flex;
+         flex-direction: column;
+         height: 350px;
+         width: 450px;
+         border: 1px solid rgb(233, 160, 218);
+         align-items: center;
+         margin: auto;
+         margin-top: 50px ;
+         background-color: rgb(238, 100, 123);
+         box-shadow: inset;
+         border-radius: 5px;
+     }
+     .box1{
+        padding: 12px;
+        margin: 15px;
+        width: 100%;
+        border: none;
+        outline: none;
+        border-radius: 20px;
+        background-color: rgb(232, 225, 225);
+        color: rgb(18, 18, 18);
+        /* font-size: 1rem; */
+     }
+     .footer {
+    background: rgb(237, 144, 160);
+    padding: 50px 20px;
+}
+
+.footer .main2 {
+    max-width: 1170px;
+    margin: auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer_col {
+    flex: 1 1 250px;
+}
+
+.footer_col h4 {
+    font-size: 18px;
+    color: black;
+    text-transform: capitalize;
+    margin-bottom: 30px;
+    font-weight: 500;
+    position: relative;
+}
+
+.footer_col h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    height: 2px;
+    /* background: rgba(219, 38, 171, 0.6); */
+    width: 50px;
+}
+
+.footer_col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer_col ul li {
+    margin-bottom: 20px;
+}
+
+.footer_col ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer_col .social img {
+    width: 20px;
+    margin: 5px;
+}
+
+#icon1 {
+    color: black;
+}
+
+   </style>
+</head>
+<body>
+    <header>
+        <div class="circle"></div>
+        <div class="circles"></div>
+        <a href="#" class="logo">Pink<span>Shop</span></a>
+        <ul>
+            <li><a href="../html/Project2.html"><i class="fa-solid fa-house" id="icon1"></i> Home</a></li>
+            <li><a href="#"><i class="fa-solid fa-user" id="icon1"></i>   About us</a></li>
+            <li><a href="#products"><i class="fa-solid fa-cart-shopping" id="icon1"></i> Products</a></li>
+            <li><a href="#services"><i class="fa-solid fa-screwdriver-wrench" id="icon1"></i> Services</a></li>
+            
+        </ul>
+        <p><a href="../html/log.html">Login</a></p>
+    </header>
+  
+    <form action="" class="form">
+        <h1>Customer Login</h1>
+        <input type="email" name="email" class="box" placeholder="Enter your email">
+        <input type="password" name="password" class="box" placeholder="Enter your password">
+        <p><a href="../html/submit.html">Login</a></p>
+    </form>
+
+    <!-- <form action="" oninput=" x.value =parseInt(a.value) +parseInt(b.value)"> -->
+        
+        <fieldset class="btn">
+        <legend>Address</legend>
+        <table class="btn1">
+            <tr>
+                <th>Name :</th>
+                <td><input type="text" name="username" placeholder="Enter your name" class="box1"></td>
+            </tr>
+            <tr>
+                <th>Address:</th>
+                <td><textarea name="message" id="" placeholder="Enter your address" class="box1"></textarea></td>
+            </tr>
+            <tr>
+                <th ></th>
+                <td><button id="submit1">Save Address</button></td>
+                <td><button id="submit1">Add Address</button></td>
+            </tr>
+            
+        </table>
+    </fieldset><br><br>
+   <!-- footer -->
+   <footer class="footer" id="services">
+    <div class="main2">
+        <div class="row">
+            <div class="footer_col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">about us</a></li>
+                    <li><a href="#">our services</a></li>
+                    <li><a href="#">privacy policy</a></li>
+                    <li><a href="#">affiliate program</a></li>
+                </ul>
+            </div>
+
+            <div class="footer_col">
+                <h4>Get Help</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">shiping</a></li>
+                    <li><a href="#">returns</a></li>
+                    <li><a href="#">payment options</a></li>
+                </ul>
+            </div>
+
+            <div class="footer_col">
+                <h4>Online</h4>
+                <ul>
+                    <li><a href="#">watch</a></li>
+                    <li><a href="#">bag</a></li>
+                    <li><a href="#">shoes</a></li>
+                    <li><a href="#">dress</a></li>
+                </ul>
+            </div>
+
+            <div class="footer_col">
+                <h4>Follower us</h4>
+                <div class="social">
+                    <a href="#"><img src="https://static.vecteezy.com/system/resources/previews/020/964/386/original/facebook-circle-icon-for-web-design-free-png.png"></a>
+                    <a href="#"><img src="https://img.freepik.com/free-psd/google-icon-isolated-3d-render-illustration_47987-9777.jpg?w=2000&t=st=1695998360~exp=1695998960~hmac=90cd6acb6bb94223c21f2321b231ff376e6a5336d5249ba90c12c94832e727a3"></a>
+                    <a href="#"><img src="https://png.pngtree.com/png-clipart/20221019/original/pngtree-twitter-social-media-round-icon-png-image_8704823.png"></a>
+                    <a href="#"><img src="https://cdn.pixabay.com/photo/2021/06/15/12/14/instagram-6338392_1280.png"></a>
+                </div>               
+                    
+                
+            </div>
+        </div>
+    </div>
+</footer>>
+  
+   
+
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE  html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sarees Collection</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+header .logo {
+    font-size: 32px;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+ header .logo span {
+    color: rgb(179, 46, 110);
+}
+
+ header ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+ header ul li {
+    padding: 5px 10px;
+}
+
+ header ul li a {
+    color: black;
+    text-decoration: none;
+}
+
+header ul li a:hover {
+    color: rgb(242, 24, 96);
+}
+
+ header p a {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 8px 20px;
+    border: 1px solid rgb(237, 144, 160);
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+header p a:hover {
+    color: white;
+    background: rgb(237, 144, 160);
+}
+
+.circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(237, 144, 160);
+    clip-path: circle(450px at left -230px);
+    z-index: -1;
+}
+
+.texts {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+ .texts h1 {
+    font-size: 5vw;
+    color: #6a6666;
+    flex: 1 1 100%;
+    margin: 15px 15px;
+}
+
+ .texts h1 span {
+    color: rgb(179, 46, 110);
+}
+
+.texts p {
+
+    flex: 1 1 100%;
+    max-width: 650px;
+    line-height: 1.6;
+    text-align: justify;
+    margin: 15px 15px;
+}
+h1{
+  text-align: center;
+  color: #9a8f8f;
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.product-card:hover img{
+    transform: scale(1.1);
+}
+
+.price {
+  font-size: 18px;
+  color: #000;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: grey;
+  margin-left: 5px;
+}
+
+.discount {
+  color: green;
+  margin-left: 5px;
+}
+
+.delivery {
+  color: #555;
+  font-size: 14px;
+}
+
+.rating {
+  margin-top: 5px;
+  color: #444;
+}
+.but{
+    cursor: pointer;
+    padding: 10px 20px;
+    border: 1px solid   rgb(7, 7, 7);
+    border-radius: 30px;
+    transition: 0.3s;
+}
+.but:hover{
+    color: white;
+    background:  rgb(237, 144, 160);
+}
+.but1{
+    text-decoration: none;
+    color: white;
+    padding: 10px 30px;
+    background: rgb(237, 144, 160);
+    border-radius: 30px;
+}
+#heart:hover{
+ color: red;
+}
+#share:hover{
+  color: rgb(71, 188, 238);
+}
+#icon1{
+  color: black;
+}
+.button-class {
+  color: black;
+    text-decoration: none;
+    /* list-style: none; */
+    cursor: pointer;
+    padding: 10px 25px;
+    border: 1px solid rgb(237, 144, 160);
+    border-radius: 30px;
+    transition: 0.3s;
+		}
+    .button-class:hover{
+      color: white;
+    background:rgb(237, 144, 160);
+    }
+    .footer {
+    background: rgb(237, 144, 160);
+    padding: 50px 20px;
+}
+
+.footer .main2 {
+    max-width: 1170px;
+    margin: auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer_col {
+    flex: 1 1 250px;
+}
+
+.footer_col h4 {
+    font-size: 18px;
+    color: black;
+    text-transform: capitalize;
+    margin-bottom: 30px;
+    font-weight: 500;
+    position: relative;
+}
+
+.footer_col h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    height: 2px;
+    /* background: rgba(219, 38, 171, 0.6); */
+    width: 50px;
+}
+
+.footer_col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer_col ul li {
+    margin-bottom: 20px;
+}
+
+.footer_col ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer_col .social img {
+    width: 20px;
+    margin: 5px;
+}
+
+#icon1 {
+    color: black;
+}
+
+  
+  </style>
+</head>
+<body>
+  <header>
+    <div class="circle"></div>
+    <div class="circles"></div>
+    <a href="#" class="logo">Pink<span>Shop</span></a>
+    <ul>
+        <li><a href="../html/Project2.html"><i class="fa-solid fa-house" id="icon1"></i> Home</a></li>
+        <li><a href="#"><i class="fa-solid fa-user" id="icon1"></i>   About us</a></li>
+        <li><a href="#products"><i class="fa-solid fa-cart-shopping" id="icon1"></i> Products</a></li>
+        <li><a href="#services"><i class="fa-solid fa-screwdriver-wrench" id="icon1"></i> Services</a></li>
+        
+    </ul>
+    <p><a href="../html/log.html">Login</a></p>
+</header>
+  <h1 id="products">Men's Collection</h1>
+  <div class="product-grid">
+    <div class="product-card">
+      <img src="../images/mwimg1.jpg" alt="">
+      <h3>Eden Robe Men Party Wear Formal Coat Pant Suits</h3>
+      <p class="price">₹12246 <span class="old-price">₹12288</span> <span class="discount">8% off</span></p>
+      <p class="delivery">Free Delivery</p>
+      <p class="rating">Rating: 4.1 (22,347)</p>
+      <p><i class="fa-solid fa-share" id="share"></i> <i class="fa-solid fa-heart" id="heart"></i></p>
+      <p class="but">Add to Cart</p>
+        <p class="but1">Buy Now</p>
+    </div>
+
+    <div class="product-card">
+      <img src="../images/mwimg2.jpg" alt="Kurti 2">
+      <h3>The men's To Wear On Your Travels Conde Nast</h3>
+      <p class="price">₹2245 <span class="old-price">₹2268</span> <span class="discount">9% off</span></p>
+      <p class="delivery">Free Delivery</p>
+      <p class="rating">Rating: 4.0 (60,552)</p>
+      <p><i class="fa-solid fa-share" id="share"></i> <i class="fa-solid fa-heart" id="heart"></i></p>
+      <p class="but">Add to Cart</p>
+        <p class="but1">Buy Now</p>
+    </div>
+    <div class="product-card">
+        <img src="../images/mwimg8.jpg" alt="Kurti 2">
+        <h3>Men's Clothing H And M At Shirley Whitt </h3>
+        <p class="price">₹1045 <span class="old-price">₹1068</span> <span class="discount">9% off</span></p>
+        <p class="delivery">Free Delivery</p>
+        <p class="rating">Rating: 4.0 (60,552)</p>
+        <p><i class="fa-solid fa-share" id="share"></i> <i class="fa-solid fa-heart" id="heart"></i></p>
+        <p class="but">Add to Cart</p>
+        <p class="but1">Buy Now</p>
+      </div>
+      <div class="product-card">
+        <img src="../images/mwimg4.jpg" alt="Kurti 2">
+        <h3>Black Formlas Clothing</h3>
+        <p class="price">₹1245 <span class="old-price">₹1268</span> <span class="discount">9% off</span></p>
+        <p class="delivery">Free Delivery</p>
+        <p class="rating">Rating: 4.0 (60,552)</p>
+        <p><i class="fa-solid fa-share" id="share"></i> <i class="fa-solid fa-heart" id="heart"></i></p>
+        <p class="but">Add to Cart</p>
+        <p class="but1">Buy Now</p>
+      </div>
+      <!-- <div class="product-card">
+        <img src="../images/img5.jpg" alt="Kurti 2">
+        <h3>Women's Green Printed Kurta</h3>
+        <p class="price">₹245 <span class="old-price">₹268</span> <span class="discount">9% off</span></p>
+        <p class="delivery">Free Delivery</p>
+        <p class="rating">Rating: 4.0 (60,552)</p>
+      </div> -->
+      <div class="product-card">
+        <img src="../images/mwimg10.webp" alt="Kurti 2">
+        <h3>Casual Spring Outfit To Wear Work For Men</h3>
+        <p class="price">₹1445 <span class="old-price">₹1468</span> <span class="discount">9% off</span></p>
+        <p class="delivery">Free Delivery</p>
+        <p class="rating">Rating: 4.0 (60,552)</p>
+        <p><i class="fa-solid fa-share" id="share"></i> <i class="fa-solid fa-heart" id="heart"></i></p>
+        <p class="but">Add to Cart</p>
+        <p class="but1">Buy Now</p>
+      </div>
+      <div class="product-card">
+        <img src="../images/mwimg5.jpg" alt="Kurti 2">
+        <h3>Formal Outfits For Men</h3>
+        <p class="price">₹1545 <span class="old-price">₹1568</span> <span class="discount">9% off</span></p>
+        <p class="delivery">Free Delivery</p>
+        <p class="rating">Rating: 4.0 (60,552)</p>
+        <p><i class="fa-solid fa-share" id="share"></i> <i class="fa-solid fa-heart" id="heart"></i></p>
+        <p class="but">Add to Cart</p>
+        <p class="but1">Buy Now</p>
+      </div>
+      <div class="product-card">
+        <img src="../images/mwimg3.webp" alt="Kurti 2">
+        <h3>Formal CoatbPnt Suits Collection</h3>
+        <p class="price">₹2450 <span class="old-price">₹2280</span> <span class="discount">9% off</span></p>
+        <p class="delivery">Free Delivery</p>
+        <p class="rating">Rating: 4.0 (60,552)</p>
+        <p><i class="fa-solid fa-share" id="share"></i> <i class="fa-solid fa-heart" id="heart"></i></p>
+        <p class="but">Add to Cart</p>
+        <p class="but1">Buy Now</p>
+      </div>
+      <div class="product-card">
+        <img src="../images/mwimg7.webp" alt="Kurti 2">
+        <h3>Smart Casual Attire For Men</h3>
+        <p class="price">₹845 <span class="old-price">₹868</span> <span class="discount">9% off</span></p>
+        <p class="delivery">Free Delivery</p>
+        <p class="rating">Rating: 4.0 (60,552)</p>
+        <p><i class="fa-solid fa-share" id="share"></i> <i class="fa-solid fa-heart" id="heart"></i></p>
+        <p class="but">Add to Cart</p>
+        <p class="but1">Buy Now</p>
+      </div>
+      <div class="product-card">
+        <img src="../images/mwimg9.webp" alt="Kurti 2">
+        <h3>Best Men's T-Shirt Brand In 2025</h3>
+        <p class="price">₹745 <span class="old-price">₹768</span> <span class="discount">9% off</span></p>
+        <p class="delivery">Free Delivery</p>
+        <p class="rating">Rating: 4.0 (60,552)</p>
+        <p><i class="fa-solid fa-share" id="share"></i> <i class="fa-solid fa-heart" id="heart"></i></p>
+        <p class="but">Add to Cart</p>
+        <p class="but1">Buy Now</p>
+      </div>
+      <div class="product-card">
+        <img src="../images/mwimg6.jpg" alt="Kurti 2">
+        <h3>Pack enifarbige T-Shirt</h3>
+        <p class="price">₹1545 <span class="old-price">₹1568</span> <span class="discount">9% off</span></p>
+        <p class="delivery">Free Delivery</p>
+        <p class="rating">Rating: 4.0 (60,552)</p>
+        <p><i class="fa-solid fa-share" id="share"></i> <i class="fa-solid fa-heart" id="heart"></i></p>
+        <p class="but">Add to Cart</p>
+        <p class="but1">Buy Now</p>
+      </div>
+
+
+    <!-- More product-card divs here -->
+  </div>
+  <!-- footer -->
+                 
+  <footer class="footer" id="services">
+    <div class="main2">
+        <div class="row">
+            <div class="footer_col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">about us</a></li>
+                    <li><a href="#">our services</a></li>
+                    <li><a href="#">privacy policy</a></li>
+                    <li><a href="#">affiliate program</a></li>
+                </ul>
+            </div>
+
+            <div class="footer_col">
+                <h4>Get Help</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">shiping</a></li>
+                    <li><a href="#">returns</a></li>
+                    <li><a href="#">payment options</a></li>
+                </ul>
+            </div>
+
+            <div class="footer_col">
+                <h4>Online</h4>
+                <ul>
+                    <li><a href="#">watch</a></li>
+                    <li><a href="#">bag</a></li>
+                    <li><a href="#">shoes</a></li>
+                    <li><a href="#">dress</a></li>
+                </ul>
+            </div>
+
+            <div class="footer_col">
+                <h4>Follower us</h4>
+                <div class="social">
+                    <a href="#"><img src="https://static.vecteezy.com/system/resources/previews/020/964/386/original/facebook-circle-icon-for-web-design-free-png.png"></a>
+                    <a href="#"><img src="https://img.freepik.com/free-psd/google-icon-isolated-3d-render-illustration_47987-9777.jpg?w=2000&t=st=1695998360~exp=1695998960~hmac=90cd6acb6bb94223c21f2321b231ff376e6a5336d5249ba90c12c94832e727a3"></a>
+                    <a href="#"><img src="https://png.pngtree.com/png-clipart/20221019/original/pngtree-twitter-social-media-round-icon-png-image_8704823.png"></a>
+                    <a href="#"><img src="https://cdn.pixabay.com/photo/2021/06/15/12/14/instagram-6338392_1280.png"></a>
+                </div>               
+                    
+                
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
