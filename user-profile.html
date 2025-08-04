@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>User Profile</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #ffe6ec;
+      padding: 30px;
+      text-align: center;
+    }
+    .profile-card {
+      background: #fff0f5;
+      padding: 20px;
+      border-radius: 15px;
+      display: inline-block;
+      box-shadow: 0 0 10px #ffb6c1;
+      width: 90%;
+      max-width: 600px;
+    }
+    h2 {
+      color: #c71585;
+    }
+    .address-box {
+      margin-top: 20px;
+      text-align: left;
+    }
+    .address-card {
+      background: #ffe4e1;
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 10px;
+      position: relative;
+    }
+    .address-card.active {
+      border: 2px solid #c71585;
+      background-color: #ffb6c1;
+    }
+    .address-card button {
+      margin-top: 8px;
+      margin-right: 10px;
+    }
+    .delete-btn {
+      background-color: #e60026;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .use-btn {
+      background-color: #c71585;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+
+    
+  </style>
+</head>
+<body>
+  <div class="profile-card">
+    <h2>User Profile</h2>
+    <p><strong>Email:</strong> <span id="email"></span></p>
+
+    <div class="address-box" id="addressList">
+      <h3>Your Saved Addresses:</h3>
+    </div>
+  </div>
+
+  <script>
+    const buyNowProduct = JSON.parse(localStorage.getItem("buyNow"));
+
+  if (buyNowProduct) {
+    const container = document.createElement("div");
+    container.style.border = "2px solid #f48"; 
+    container.style.padding = "15px";
+    container.style.marginTop = "20px";
+    container.style.borderRadius = "10px";
+    container.innerHTML = `
+      <h2>Selected Product</h2>
+      <img src="${buyNowProduct.image}" alt="${buyNowProduct.name}" width="120">
+      <p><strong>${buyNowProduct.name}</strong></p>
+      <p>Price: ₹${buyNowProduct.price}</p>
+      <button onclick="placeOrder()">Place Order</button>
+    `;
+    document.body.appendChild(container);
+  }
+
+function placeOrder() {
+  const selectedAddress = JSON.parse(localStorage.getItem("userData"));
+  if (!selectedAddress || !selectedAddress.name || !selectedAddress.phone || !selectedAddress.address) {
+    alert("❌ Please select a delivery address before placing your order.");
+    return;
+  }
+
+  alert("✅ Order placed successfully!");
+  localStorage.removeItem("buyNow");
+  window.location.reload();
+}
+
+
+    const loggedUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    const allUserAddresses = JSON.parse(localStorage.getItem("allUserAddresses")) || [];
+    const addressListDiv = document.getElementById("addressList");
+    const currentSelected = JSON.parse(localStorage.getItem("userData")) || {};
+
+    document.getElementById("email").innerText = loggedUser?.email || "";
+
+    let userEntry = allUserAddresses.find(user => user.email === loggedUser.email);
+
+    function renderAddresses() {
+      addressListDiv.innerHTML = "<h3>Your Saved Addresses:</h3>";
+
+      if (!userEntry || userEntry.addresses.length === 0) {
+        addressListDiv.innerHTML += "<p>No addresses saved yet.</p>";
+        return;
+      }
+
+      userEntry.addresses.forEach((addr, index) => {
+        const div = document.createElement("div");
+        div.className = "address-card";
+        if (
+          addr.name === currentSelected.name &&
+          addr.phone === currentSelected.phone &&
+          addr.address === currentSelected.address
+        ) {
+          div.classList.add("active");
+        }
+
+        div.innerHTML = `
+          <p><strong>Name:</strong> ${addr.name}</p>
+          <p><strong>Phone:</strong> ${addr.phone}</p>
+          <p><strong>Address:</strong> ${addr.address}</p>
+          <button class="use-btn" onclick="selectAddress(${index})">Use this address</button>
+          <button class="delete-btn" onclick="deleteAddress(${index})">Delete</button>
+        `;
+        addressListDiv.appendChild(div);
+      });
+    }
+
+    function selectAddress(index) {
+    const selected = userEntry.addresses[index];
+    localStorage.setItem("userData", JSON.stringify(selected));
+
+    // Update selected reference
+    location.reload();  // reload so that highlight gets applied freshly
+  }
+
+    function deleteAddress(index) {
+      if (confirm("Are you sure you want to delete this address?")) {
+        userEntry.addresses.splice(index, 1);
+
+        // Update allUserAddresses
+        const updated = allUserAddresses.map(user => {
+          if (user.email === loggedUser.email) return userEntry;
+          return user;
+        });
+
+        localStorage.setItem("allUserAddresses", JSON.stringify(updated));
+
+        // If deleted address was selected, remove it
+        const selected = JSON.parse(localStorage.getItem("userData"));
+        if (
+          selected &&
+          selected.name === userEntry.addresses[index]?.name &&
+          selected.phone === userEntry.addresses[index]?.phone
+        ) {
+          localStorage.removeItem("userData");
+        }
+
+        renderAddresses();
+      }
+    }
+
+       renderAddresses();
+
+    // Show cart products placed (confirmedCart)
+    const confirmedCart = JSON.parse(localStorage.getItem("confirmedCart")) || [];
+   if (confirmedCart.length > 0) {
+  const container = document.createElement("div");
+  container.innerHTML = "<h2>Your Orders</h2>";
+  container.style.marginTop = "30px";
+  container.style.background = "#fff0f5";
+  container.style.padding = "20px";
+  container.style.borderRadius = "15px";
+  container.style.boxShadow = "0 0 10px #ffb6c1";
+  container.style.maxWidth = "600px";
+  container.style.marginLeft = "auto";
+  container.style.marginRight = "auto";
+
+  let productTotal = 0;
+
+  confirmedCart.forEach(item => {
+    const div = document.createElement("div");
+    const total = item.price * item.quantity;
+    productTotal += total;
+
+    div.innerHTML = `
+      <p><img src="${item.image}" width="80" style="vertical-align: middle; margin-right: 10px;"> 
+      <strong>${item.name}</strong> × ${item.quantity} - ₹${total}</p>
+    `;
+    container.appendChild(div);
+  });
+
+  const gst = Math.round(productTotal * 0.05);
+  const delivery = 50;
+  const finalTotal = productTotal + gst + delivery;
+
+  const summary = document.createElement("div");
+  summary.style.marginTop = "15px";
+  summary.innerHTML = `
+    <hr style="margin: 15px 0;">
+    <p><strong>Subtotal:</strong> ₹${productTotal}</p>
+    <p><strong>GST (5%):</strong> ₹${gst}</p>
+    <p><strong>Delivery Charges:</strong> ₹${delivery}</p>
+    <p style="font-size: 18px; margin-top: 10px;"><strong>Total Amount:</strong> ₹${finalTotal}</p>
+    <hr style="margin: 15px 0;">
+  `;
+  container.appendChild(summary);
+
+  // Payment Method
+  const paymentDiv = document.createElement("div");
+  paymentDiv.style.marginTop = "10px";
+  paymentDiv.style.marginBottom = "10px";
+
+  const paymentLabel = document.createElement("label");
+  paymentLabel.innerText = "Select Payment Method: ";
+  paymentLabel.style.fontWeight = "bold";
+  paymentLabel.style.marginRight = "10px";
+  paymentLabel.style.fontSize = "16px";
+
+  const paymentSelect = document.createElement("select");
+  paymentSelect.id = "paymentMethod";
+  paymentSelect.style.padding = "8px 14px";
+  paymentSelect.style.borderRadius = "6px";
+  paymentSelect.style.border = "1px solid #aaa";
+  paymentSelect.style.cursor = "pointer";
+  paymentSelect.style.fontSize = "15px";
+
+  const optionDefault = new Option("-- Select Payment --", "");
+  const optionCOD = new Option("Cash on Delivery", "Cash on Delivery");
+  const optionUPI = new Option("UPI", "UPI");
+
+  paymentSelect.appendChild(optionDefault);
+  paymentSelect.appendChild(optionCOD);
+  paymentSelect.appendChild(optionUPI);
+
+  paymentDiv.appendChild(paymentLabel);
+  paymentDiv.appendChild(paymentSelect);
+
+  // UPI Input Field
+  const upiInput = document.createElement("input");
+  upiInput.id = "upiIdInput";
+  upiInput.placeholder = "Enter UPI ID";
+  upiInput.style.marginTop = "10px";
+  upiInput.style.padding = "8px 14px";
+  upiInput.style.borderRadius = "6px";
+  upiInput.style.border = "1px solid #aaa";
+  upiInput.style.fontSize = "15px";
+  upiInput.style.display = "none";
+
+  paymentSelect.onchange = function () {
+    if (paymentSelect.value === "UPI") {
+      upiInput.style.display = "block";
+    } else {
+      upiInput.style.display = "none";
+    }
+  };
+
+  container.appendChild(paymentDiv);
+  container.appendChild(upiInput);
+
+  // Buttons Container
+  const btnContainer = document.createElement("div");
+  btnContainer.style.marginTop = "15px";
+  btnContainer.style.display = "flex";
+  btnContainer.style.justifyContent = "center";
+  btnContainer.style.gap = "15px";
+
+  const placeOrderBtn = document.createElement("button");
+  placeOrderBtn.innerText = "Place Order";
+  placeOrderBtn.style.padding = "10px 20px";
+  placeOrderBtn.style.backgroundColor = "#c71585";
+  placeOrderBtn.style.color = "white";
+  placeOrderBtn.style.border = "none";
+  placeOrderBtn.style.borderRadius = "6px";
+  placeOrderBtn.style.cursor = "pointer";
+
+  placeOrderBtn.onclick = function () {
+    const selectedAddress = JSON.parse(localStorage.getItem("userData"));
+    const paymentMethod = paymentSelect.value;
+    const upiId = document.getElementById("upiIdInput").value.trim();
+
+    if (!selectedAddress || !selectedAddress.name || !selectedAddress.phone || !selectedAddress.address) {
+      alert("❌ Please select a delivery address before placing your order.");
+      return;
+    }
+
+    if (!paymentMethod) {
+      alert("❌ Please select a payment method.");
+      return;
+    }
+
+    if (paymentMethod === "UPI" && upiId === "") {
+      alert("❌ Please enter your UPI ID.");
+      return;
+    }
+
+    alert(`✅ Order placed successfully!\n🧾 Payment Method: ${paymentMethod}${upiId ? `\nUPI ID: ${upiId}` : ""}`);
+    localStorage.removeItem("confirmedCart");
+    localStorage.removeItem("buyNow");
+    location.reload();
+  };
+
+  const cancelOrderBtn = document.createElement("button");
+  cancelOrderBtn.innerText = "Cancel Order";
+  cancelOrderBtn.style.padding = "10px 20px";
+  cancelOrderBtn.style.backgroundColor = "#e60026";
+  cancelOrderBtn.style.color = "white";
+  cancelOrderBtn.style.border = "none";
+  cancelOrderBtn.style.borderRadius = "6px";
+  cancelOrderBtn.style.cursor = "pointer";
+
+  cancelOrderBtn.onclick = function () {
+    if (confirm("Are you sure you want to cancel this order?")) {
+      localStorage.removeItem("confirmedCart");
+      localStorage.removeItem("buyNow");
+      location.reload();
+    }
+  };
+
+  btnContainer.appendChild(placeOrderBtn);
+  btnContainer.appendChild(cancelOrderBtn);
+  container.appendChild(btnContainer);
+  document.body.appendChild(container);
+}
+
+
+
+    // Optional: Clear confirmedCart after order is shown
+    // localStorage.removeItem("confirmedCart");
+
+  </script>
+</body>
+</html>

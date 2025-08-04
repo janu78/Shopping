@@ -1,15 +1,19 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-   <style>
-     body{
-        background-color: rgb(244, 239, 240);
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login & Address</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+  <style>
+    body { 
+        background-color: rgb(244, 239, 240); 
+        font-family: Arial, sans-serif;
      }
-     header {
+  
+
+header {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -104,93 +108,40 @@ h1{
   text-align: center;
   color: #9a8f8f;
 }
-     .form{
-         display: flex;
-         flex-direction: column;
-         height: 450px;
+    .form, .btn { 
+        margin: 50px auto;
+         padding: 30px; 
          width: 400px;
-         border: 1px solid rgb(233, 160, 218);
-         align-items: center;
-         margin: auto;
-         margin-top: 50px ;
-         background-color: rgb(238, 100, 123);
-         box-shadow: inset;
-         border-radius: 25px;
-     }
-     .form p a{
-        color: black;
-    text-decoration: none;
-    cursor: pointer;
-    padding: 8px 20px;
-    border: 1px solid rgb(237, 144, 160);
-    border-radius: 30px;
-    transition: 0.3s;
-     }
-     .form p a:hover{
-     color: white;
-    background: rgb(237, 144, 160);
-     }
-     h1{
-        color: white;
-        margin: 50px;
-     }
-     .box{
-        padding: 12px;
-        margin: 20px;
-        width: 60%;
-        border: none;
-        outline: none;
-        border-radius: 20px;
-        background-color: rgb(232, 225, 225);
-        color: rgb(18, 17, 17);
-        font-size: 1rem;
-     }
-     #submit{
-         padding: 10px 20px;
-         margin-top: 50px;
-         color: white;
-         background-color: rgb(237, 144, 160);
-         border: none;
-         border-radius: 20px;
-         font-size: larger;
-     }
-     
-     #submit1{
-        position: relative;
-        right: 30px;
+          border-radius: 25px; 
+          background-color: rgb(238, 100, 123);
+           color: white;
+         }
+    .form input, .btn input, .btn textarea {
+         width: 100%;
+          padding: 10px; 
+          margin: 10px 0;
+           border-radius: 20px;
+            border: none; 
+            outline: none; 
+        }
+    .form button, .btn button { 
         padding: 10px 20px;
-         /* margin-top: 10px; */
+         background: rgb(201, 41, 68);
+          color: white; 
+          border: none;
+           border-radius: 5px; 
+           margin-right: 10px;
+            cursor: pointer; 
+        }
+    .form button:hover, .btn button:hover {
+         background: rgb(237, 144, 160); 
+        }
+    h1, legend { 
+        text-align: center;
          color: white;
-         background-color: rgb(201, 41, 68);
-         border: none;
-         border-radius: 5px;
-         font-size: larger;
-     }
-     .btn{
-        display: flex;
-         flex-direction: column;
-         height: 350px;
-         width: 450px;
-         border: 1px solid rgb(233, 160, 218);
-         align-items: center;
-         margin: auto;
-         margin-top: 50px ;
-         background-color: rgb(238, 100, 123);
-         box-shadow: inset;
-         border-radius: 5px;
-     }
-     .box1{
-        padding: 12px;
-        margin: 15px;
-        width: 100%;
-        border: none;
-        outline: none;
-        border-radius: 20px;
-        background-color: rgb(232, 225, 225);
-        color: rgb(18, 18, 18);
-        /* font-size: 1rem; */
-     }
-     .footer {
+         }
+        /* footer */
+    .footer {
     background: rgb(237, 144, 160);
     padding: 50px 20px;
 }
@@ -252,53 +203,62 @@ h1{
     color: black;
 }
 
-   </style>
+  </style>
 </head>
 <body>
-    <header>
-        <div class="circle"></div>
-        <div class="circles"></div>
-        <a href="#" class="logo">Pink<span>Shop</span></a>
-        <ul>
-            <li><a href="index.html"><i class="fa-solid fa-house" id="icon1"></i> Home</a></li>
-            <li><a href="#"><i class="fa-solid fa-user" id="icon1"></i>   About us</a></li>
-            <li><a href="#products"><i class="fa-solid fa-cart-shopping" id="icon1"></i> Products</a></li>
-            <li><a href="#services"><i class="fa-solid fa-screwdriver-wrench" id="icon1"></i> Services</a></li>
-            
-        </ul>
-        <p><a href="log.html">Login</a></p>
-    </header>
-  
-    <form action="" class="form">
-        <h1>Customer Login</h1>
-        <input type="email" name="email" class="box" placeholder="Enter your email">
-        <input type="password" name="password" class="box" placeholder="Enter your password">
-        <p><a href="submit.html">Login</a></p>
-    </form>
+  <header>
+            <div class="circle"></div>
+            <div class="circles"></div>
+            <a href="#" class="logo">Pink<span>Shop</span></a>
+            <ul>
+                <li><a href="#" onclick="toggleCartSidebar()"><i class="fa-solid fa-cart-shopping"></i> Cart (<span id="cartCount">0</span>)</a></li>
+                <li><a href="index.html"><i class="fa-solid fa-house" id="icon1"></i> Home</a></li>
+                <li><a href="#home"><i class="fa-solid fa-user" id="icon1"></i>   About us</a></li>
+                <li><a href="#products"><i class="fa-solid fa-cart-shopping" id="icon1"></i> Products</a></li>
+                <li><a href="#services"><i class="fa-solid fa-screwdriver-wrench" id="icon1"></i> Services</a></li>
+                
+            </ul>
+            <p><a href="log.html">Login</a></p>
+        </header>
 
-    <!-- <form action="" oninput=" x.value =parseInt(a.value) +parseInt(b.value)"> -->
-        
-        <fieldset class="btn">
-        <legend>Address</legend>
-        <table class="btn1">
-            <tr>
-                <th>Name :</th>
-                <td><input type="text" name="username" placeholder="Enter your name" class="box1"></td>
-            </tr>
-            <tr>
-                <th>Address:</th>
-                <td><textarea name="message" id="" placeholder="Enter your address" class="box1"></textarea></td>
-            </tr>
-            <tr>
-                <th ></th>
-                <td><button id="submit1">Save Address</button></td>
-                <td><button id="submit1">Add Address</button></td>
-            </tr>
-            
-        </table>
-    </fieldset><br><br>
-   <!-- footer -->
-   <footer class="footer" id="services">
+
+<form class="form" id="loginForm">
+  <h1>Login / Register</h1>
+  <input type="email" name="email" placeholder="Email" required />
+  <input type="password" name="password" placeholder="Password" required />
+  <button type="submit">Login</button>
+  <button type="button" onclick="registerUser()">Register</button>
+</form>
+
+<div class="btn">
+  <legend>Address Section</legend>
+
+  <!-- Current Address Box -->
+  <div id="currentAddressBox" style="margin-bottom: 20px;">
+    <button onclick="showCurrentAddress()">Current Address</button>
+    <div id="currentAddress" style="margin-top: 10px; background: #fbdde2; padding: 15px; border-radius: 10px;"></div>
+  </div>
+
+  <!-- Add Address Form -->
+  <div>
+    <button onclick="toggleAddForm()">Add Address</button>
+    <div id="addAddressForm" style="display:none; margin-top:10px;">
+      <input type="text" id="username" placeholder="Enter your name" />
+      <input type="tel" id="userphone" placeholder="Enter your phone number" />
+      <textarea id="useraddress" placeholder="Enter your address"></textarea>
+      <button onclick="saveAddress()">Save Address</button>
+    </div>
+  </div>
+
+  <!-- Confirm Button -->
+  <div style="margin-top: 20px;">
+    <button onclick="confirmDetails()">Confirm Details</button>
+  </div>
+</div>
+                
+  <!-- footer -->
+                 
+  <footer class="footer" id="services">
     <div class="main2">
         <div class="row">
             <div class="footer_col">
@@ -344,9 +304,110 @@ h1{
             </div>
         </div>
     </div>
-</footer>>
-  
-   
+</footer>
+
+<script>
+function registerUser() {
+  const email = document.querySelector("input[name='email']").value;
+  const password = document.querySelector("input[name='password']").value;
+
+  if (!email || !password) {
+    alert("Please enter email and password");
+    return;
+  }
+
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const userExists = users.find(user => user.email === email);
+
+  if (userExists) {
+    alert("User already exists!");
+  } else {
+    users.push({ email, password });
+    localStorage.setItem("users", JSON.stringify(users));
+    alert("Registration successful!");
+  }
+}
+
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const email = e.target.email.value;
+  const password = e.target.password.value;
+
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const loggedUser = users.find(user => user.email === email && user.password === password);
+
+  if (loggedUser) {
+    localStorage.setItem("loggedInUser", JSON.stringify(loggedUser));
+    alert("Login successful!");
+  } else {
+    alert("Invalid login details!");
+  }
+});
+
+// toggle Add Address form
+function toggleAddForm() {
+  const form = document.getElementById("addAddressForm");
+  form.style.display = form.style.display === "none" ? "block" : "none";
+}
+
+// Save multiple addresses per user
+function saveAddress() {
+  const name = document.getElementById("username").value;
+  const phone = document.getElementById("userphone").value;
+  const address = document.getElementById("useraddress").value;
+  const loggedUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+  if (!loggedUser) {
+    alert("Please login first");
+    return;
+  }
+
+  const allUserAddresses = JSON.parse(localStorage.getItem("allUserAddresses")) || [];
+
+  let userEntry = allUserAddresses.find(user => user.email === loggedUser.email);
+
+  if (!userEntry) {
+    userEntry = { email: loggedUser.email, addresses: [] };
+    allUserAddresses.push(userEntry);
+  }
+
+  const newAddress = { name, phone, address };
+  userEntry.addresses.push(newAddress);
+
+  // Save
+  localStorage.setItem("allUserAddresses", JSON.stringify(allUserAddresses));
+  localStorage.setItem("userData", JSON.stringify(newAddress)); // also make it current
+
+  alert("Address added and set as current!");
+  showCurrentAddress();
+}
+
+function showCurrentAddress() {
+  const userData = JSON.parse(localStorage.getItem("userData"));
+  if (!userData) {
+    document.getElementById("currentAddress").innerText = "No address selected.";
+    return;
+  }
+
+  document.getElementById("currentAddress").innerHTML = `
+    <p><strong>Name:</strong> ${userData.name}</p>
+    <p><strong>Phone:</strong> ${userData.phone}</p>
+    <p><strong>Address:</strong> ${userData.address}</p>
+  `;
+}
+
+// Confirm and go to profile
+function confirmDetails() {
+  const userData = localStorage.getItem("userData");
+  if (!userData) {
+    alert("Please add and select an address first.");
+    return;
+  }
+
+  window.location.href = "user-profile.html";
+}
+</script>
+
 
 </body>
 </html>

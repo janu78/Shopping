@@ -6,7 +6,7 @@
   <title>Sarees Collection</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
-    body {
+       body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
@@ -107,6 +107,7 @@ h1{
   text-align: center;
   color: #9a8f8f;
 }
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -174,6 +175,18 @@ h1{
     background: rgb(237, 144, 160);
     border-radius: 30px;
 }
+.icon btn{
+    position: absolute;
+   bottom: 10px;
+    padding: 10px;
+    display: flex;
+    gap: 8px;
+}
+.icon{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
 #heart:hover{
  color: red;
 }
@@ -181,7 +194,7 @@ h1{
   color: rgb(71, 188, 238);
 }
 #icon1{
-  color: black;
+    color: black;
 }
 .button-class {
   color: black;
@@ -197,6 +210,7 @@ h1{
       color: white;
     background:rgb(237, 144, 160);
     }
+    /* footer */
     .footer {
     background: rgb(237, 144, 160);
     padding: 50px 20px;
@@ -259,6 +273,29 @@ h1{
     color: black;
 }
 
+.cart-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.cart-buttons button {
+  flex: 1;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: rgb(237, 144, 160);
+  color: white;
+  transition: background 0.3s;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cart-buttons button:hover {
+  background-color: rgb(200, 80, 120);
+}
   
   </style>
 </head>
@@ -268,6 +305,7 @@ h1{
     <div class="circles"></div>
     <a href="#" class="logo">Pink<span>Shop</span></a>
     <ul>
+      <li><a href="#" onclick="toggleCartSidebar()"><i class="fa-solid fa-cart-shopping"></i> Cart (<span id="cartCount">0</span>)</a></li>
         <li><a href="index.html"><i class="fa-solid fa-house" id="icon1"></i> Home</a></li>
         <li><a href="#"><i class="fa-solid fa-user" id="icon1"></i>   About us</a></li>
         <li><a href="#products"><i class="fa-solid fa-cart-shopping" id="icon1"></i> Products</a></li>
@@ -276,6 +314,14 @@ h1{
     </ul>
     <p><a href="log.html">Login</a></p>
 </header>
+  <div id="cartSidebar" style="position: fixed; right: -400px; top: 0; width: 350px; height: 100%; background: rgb(237, 168, 180); box-shadow: -2px 0 10px rgba(0,0,0,0.3); transition: 0.3s; padding: 20px; overflow-y: auto; z-index: 9999;">
+  <h2>Your Cart</h2>
+  <div id="cartItems"></div>
+  <div class="cart-buttons">
+    <button onclick="confirmCart()">Confirm Order</button>
+    <button onclick="deleteCart()">Delete Cart</button>
+  </div>
+</div>
   <h1 id="products">Men's Collection</h1>
   <div class="product-grid">
     <div class="product-card">
@@ -439,5 +485,95 @@ h1{
         </div>
     </div>
 </footer>
+
+<script>
+    document.querySelectorAll(".product-card").forEach(card => {
+  const name = card.querySelector("h3").innerText;
+  const price = parseFloat(card.querySelector(".price").innerText.replace("₹", "").trim());
+  const image = card.querySelector("img").getAttribute("src");
+
+  const product = { name, price, image };
+
+  card.querySelector(".but").addEventListener("click", () => addToCart(product));
+  card.querySelector(".but1").addEventListener("click", () => buyNow(product));
+});
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function updateCartCount() {
+  document.getElementById("cartCount").innerText = cart.reduce((acc, item) => acc + item.quantity, 0);
+}
+
+function toggleCartSidebar() {
+  const sidebar = document.getElementById("cartSidebar");
+  sidebar.style.right = sidebar.style.right === "0px" ? "-400px" : "0px";
+  displayCartItems();
+}
+
+function addToCart(product) {
+  const existing = cart.find(p => p.name === product.name);
+  if (existing) {
+    existing.quantity++;
+  } else {
+    cart.push({ ...product, quantity: 1 });
+  }
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+  alert("✅ Product added to cart!");
+  displayCartItems();
+  document.getElementById("cartSidebar").style.right = "0px";
+}
+
+function displayCartItems() {
+  const container = document.getElementById("cartItems");
+  container.innerHTML = "";
+  cart.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.innerHTML = `
+      <p><img src="${item.image}" width="60"> ${item.name} - ₹${item.price}</p>
+      <button onclick="changeQty(${index}, -1)">-</button>
+      <span>${item.quantity}</span>
+      <button onclick="changeQty(${index}, 1)">+</button>
+      <hr/>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function changeQty(index, delta) {
+  cart[index].quantity += delta;
+  if (cart[index].quantity <= 0) cart.splice(index, 1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+  displayCartItems();
+}
+
+function confirmCart() {
+  localStorage.setItem("confirmedCart", JSON.stringify(cart));
+  alert("✅ Cart confirmed! Redirecting to Profile...");
+  window.location.href = "user-profile.html";
+}
+function deleteCart() {
+  if (confirm("Are you sure you want to delete all items in the cart?")) {
+    cart = [];
+    localStorage.removeItem("cart");
+    localStorage.removeItem("confirmedCart");
+    updateCartCount();
+    displayCartItems();
+    alert("🗑️ Cart deleted successfully!");
+  }
+}
+
+function buyNow(product) {
+  localStorage.setItem("confirmedCart", JSON.stringify([{ ...product, quantity: 1 }]));
+  localStorage.removeItem("cart");
+  window.location.href = "user-profile.html";
+}
+
+updateCartCount();
+window.addToCart = addToCart;
+window.buyNow = buyNow;
+</script>
+
+
 </body>
 </html>
